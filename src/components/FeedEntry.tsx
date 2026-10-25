@@ -17,13 +17,13 @@ export default function FeedEntry({patch} : {patch: Patch}) {
     return(
         <article className="rounded-xl border-line border bg-card p-5">
             <div className="flex justify-between gap-3">
-                <h2 className="text-lg font-bold text-ink">{project?.name}</h2>
+                <h3 className="text-lg font-bold text-ink">{project?.name}</h3>
                 <p className="text-sm text-muted">{patch.date}</p>
             </div>
-            <p className="mt-3 text-lg text-body italic">“{patch.title}”</p>
+            <p className="mt-3 text-sm text-muted">{project?.stack.join(" · ")}</p>
             {patch.changes.map((group) => (
                 <section key={group.kind}>
-                <h3 className={`mt-4 text-[11px] font-semibold tracking-[0.14em] uppercase ${kindColors[group.kind]}`}>{group.kind}</h3>
+                <p className={`mt-4 text-[11px] font-semibold tracking-[0.14em] uppercase ${kindColors[group.kind]}`}>{group.kind}</p>
                 <ul className='mt-2 space-y-1 list-disc pl-5'>
                     {group.items.map((item, index) => (
                         <li 

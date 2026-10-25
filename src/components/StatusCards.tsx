@@ -16,8 +16,9 @@ export default function StatusCard({project}: {project: Project}){
                 </span>
                 
             </div>
-            <p className="text-base text-muted mt-2">{project.description}</p>
-            <p className="text-sm text-faint mt-4">{project.date}</p>
+            <div className="mt-4 flex items-baseline justify-between gap-3">
+                <p className="shrink-0 text-sm text-faint">{project.date}</p>
+            </div>
         </article>
     )
 }
