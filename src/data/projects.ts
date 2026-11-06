@@ -108,4 +108,11 @@ export const projects: Project[] = [
         stack: ["Vite", "React", "Tailwind"],
         date: "Oct 24, 2026",
     },
+    {
+        id: "splitter",
+        name: "Paycheck Splitter",
+        status: "Active",
+        stack: ["React", "TypeScript", "Vite", "Express", "PostgreSQL", "Docker", "Self-Hosted"],
+        date: "Nov 6, 2026",
+    },
 ]
