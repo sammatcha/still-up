@@ -9,6 +9,28 @@ export type Patch = {
 }
 
 export const patches: Patch[] = [
+
+    {
+        id: "finance-health",
+        projectId: "finance",
+        date: "Nov 6, 2026",
+        devNotes:
+            "Blackbox probes the deep health route every 24 hours. Prometheus scrapes that probe, and Alertmanager fires when it fails. The check reads the demo user, confirms the Plaid token still works, and requires Plaid to return an account.",
+        changes: [
+            {
+                kind: "Fix",
+                items: [
+                    "Deep health check runs every 24 hours and confirms the demo user exists, the token still works, and Plaid returns an account",
+                ],
+            },
+            {
+                kind: "Update",
+                items: [
+                    "Database moved from Render to Neon Postgres on the free tier",
+                ],
+            },
+        ],
+    },
     {
         id: "stillup-board",
         projectId: "stillup",
@@ -26,35 +48,17 @@ export const patches: Patch[] = [
         ],
     },
     {
-        id: "finance-metrics",
-        projectId: "finance",
-        date: "Oct 13, 2026",
-        devNotes:
-            "Plaid sync, latency, and error rate are one scrape. Prometheus reads /metrics on the app host, Grafana charts those three series, and Discord pages only after two failed checks.",
-        changes: [
-           
-            {
-                kind: "Known issues",
-                items: [
-                    "The dashboard will go down because no alerting hooked up to it yet"
-                ],
-            },
-           
-           
-        ],
-    },
-    {
         id: "paycheck-split",
         projectId: "paycheck",
         date: "Oct 7, 2026",
         devNotes:
-            "Each bucket is a percent of the deposit. Those amounts are summed, and whatever is left is stored as leftover.",
+            "Saved default percentages split a paycheck into buckets. The public demo uses a separate database of seeded fake data.",
         changes: [
             {
-                kind: "New",
+                 kind: "New",
                 items: [
-                    "A paycheck splits across emergency, loan, student loan, travel, and invest",
-                    "Each split is saved with the leftover",
+                    "Splits each paycheck across buckets using saved default percentages, can overide the % amount",
+                    "Dockerized and self-hosted on a homelab, with a public demo using seeded fake data",
                 ],
             },
         ],
@@ -64,13 +68,14 @@ export const patches: Patch[] = [
         projectId: "tracker",
         date: "Sep 14, 2026",
         devNotes:
-            "A job posting PDF goes to a Supabase function that asks Claude for the application fields. Interview counts come from status history: a month counts when an application’s history includes Interview.",
+            "A job posting PDF goes to a Supabase function that asks Claude for the application fields. Interview counts come from status history: a month counts when an application’s history includes Interview. The demo button signs in as the test admin. That account is loaded with fake applications, so the dashboard opens without a real sign-up.",
         changes: [
             {
                 kind: "New",
                 items: [
                     "Upload a job posting PDF and Claude fills the application fields",
                     "Interview activity by month",
+                    "Demo button signs in as the test admin with fake data",
                 ],
             },
             {
